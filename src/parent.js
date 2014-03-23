@@ -21,7 +21,7 @@
     }
     // Update iframe height
     if (data.hasOwnProperty('height')) {
-      iframe.style.height = data.height + 'px';
+      iframe.style.height = parseInt(data.height, 10) + 'px';
     }
   });
 })();
