@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Responsive iframe</title>
+    <style type="text/css">
+        body { color: #fff; background-color: #d675dd; }
+        .hidden { display: none; }
+        .button { background-color: #a053a0; border-radius: 5px; border: 1px solid #621966; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Responsive iframe</h1>
+    <span id='button' class='button'>Press me!</span>
+    <p id='mytext' class='hidden'>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+    </p>
+    <script type='text/javascript'>
+    // Responsive iframe code
+    (function (window, document) {
+      var oldHeight = 0;
+      setInterval(function() {
+        var height = document.body.clientHeight;
+        if (oldHeight != height) {
+          parent.postMessage(JSON.stringify( {iframeid:window.location.hash, height:height} ), '*');
+          oldHeight = height;
+        }
+      }, 100);
+    })(window, document);
+    // Button click listener
+    document.getElementById('button').onclick = function () {
+        if ('hidden' === document.getElementById('mytext').className) {
+            document.getElementById('mytext').className = '';
+        } else {
+            document.getElementById('mytext').className = 'hidden';
+        }
+    };
+    </script>
+</body>
+</html>
