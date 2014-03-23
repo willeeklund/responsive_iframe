@@ -1,7 +1,7 @@
 /**
  * Script for parent frame, listening to messages from the iframe, to update iframe height
  */
-(function () {
+(function (window, document) {
   var listen = function (e, t, f) {
     return typeof e.addEventListener === "function" ? e.addEventListener(t, f, false) : e.attachEvent('on' + t, f);
   };
@@ -24,4 +24,4 @@
       iframe.style.height = parseInt(data.height, 10) + 'px';
     }
   });
-})();
+})(window, document);
